@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <main>
   <head>
-
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Contacto</h1>
+    <h1 id="form-title">Contacto</h1>
 
-    <form id="contactForm" style="display: flex; flex-direction: column; max-width: 300px;">
-      <label for="asunto">Asunto:</label>
-      <input id="asunto-input" type="text" name="asunto">
+    <form id="contactForm">
+      <label class="input-label" for="asunto-input">Asunto:</label>
+      <input class="input" id="asunto-input" type="text" name="asunto" required>
 
-      <label for="nombre">Nombre:</label>
-      <input id="nombre-input" type="text" name="nombre">
+      <label class="input-label" for="nombre-input">Nombre:</label>
+      <input class="input" id="nombre-input" type="text" name="nombre" required>
 
-      <label for="comentarios">Comentarios:</label>
-      <textarea name="comentarios"></textarea>
+      <label class="input-label" for="comentarios">Comentarios:</label>
+      <textarea class="input" id="comentarios" required></textarea>
 
-      <label for="correo">Correo:</label>
-      <input id="correo-input" type="email" name="correo">
+      <label class="input-label" for="correo-input">Correo:</label>
+      <input class="input" id="correo-input" type="email" name="correo" required>
 
-      <label for="telefono">Teléfono:</label>
-      <input id="telefono-input" type="text" nombre="telefono">
+      <label class="input-label" for="telefono-input">Teléfono:</label>
+      <input class="input" id="telefono-input" type="text" nombre="telefono" required>
 
       <br>
 
-      <button>
+      <button id="submit-btn">
         Enviar
       </button>
     </form>
   </body>
 
   <script>
-    document.addEventListener("submit", (e) => {
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
       e.preventDefault();
 
       let nombre = document.getElementById("nombre-input").value;
