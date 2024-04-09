@@ -1,0 +1,30 @@
+body {
+  background-color: rgb(205, 205, 205);
+}
+
+#student-name {
+  color: rgb(80, 96, 160);
+  text-decoration: underline;
+}
+
+.student-description {
+  font-size: large;
+  color: gray;
+  max-width: 500px;
+}
+
+.section-title {
+  color: rgb(74, 112, 209);
+  font-size: larger;
+  text-decoration: underline;
+  margin: 0 !important;
+}
+
+.element-list {
+  font-size:medium;
+  margin: 15px;
+}
+
+.italics {
+  font-style: italic;
+}

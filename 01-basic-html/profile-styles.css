@@ -1,0 +1,58 @@
+#form-title {
+  text-align: center;
+  font-size: 55px;
+}
+
+#contactForm {
+  display: flex; 
+  flex-direction: column; 
+  position: absolute;
+
+  right: 0;
+  left: 0;
+  margin: auto;
+
+  min-width: 300px;
+  max-width: 400px;
+
+  border-style: solid;
+  border-radius: 20px;
+  padding: 20px;
+
+  background-color: rgb(225, 225, 225);
+}
+
+.input-label {
+  color: rgb(59, 59, 59);
+  font-size: large;
+}
+
+.input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+
+  margin-bottom: 15px;
+}
+
+#submit-btn {
+  font-size: larger;
+  color: rgb(0, 195, 255);
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+
+  cursor: pointer;
+  
+  transition: all 0.3s;
+  background-color: white;
+}
+
+#submit-btn:hover {
+  color: white;
+  background-color: rgb(159, 185, 240);
+}
+
+#submit-btn:active {
+  scale: 0.9;
+}
