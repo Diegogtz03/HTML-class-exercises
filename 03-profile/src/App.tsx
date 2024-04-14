@@ -183,9 +183,17 @@ function App() {
           </div>
         </div>
 
-        <footer className="flex w-screen justify-center fixed bottom-0 p-4 bg-zinc-900 bg-gradient-to-t from-neutral-700 to-0">
+        <footer className="flex w-screen justify-center bottom-0 p-4 bg-zinc-900 bg-gradient-to-t from-neutral-700 to-0">
           <a href="mailto: diego_gtz_t@hotmail.com" className="p-4 bg-gray-600 rounded-lg text-gray-300 hover:opacity-95 mx-2">
             diego_gtz_t@hotmail.com
+          </a>
+
+          <a href="https://www.instagram.com/diegogtzt" target="_blank" className="p-4 bg-gray-600 rounded-lg text-gray-300 hover:opacity-95 mx-2">
+            Instagram
+          </a>
+
+          <a href="https://twitter.com/diego_trevin" target="_blank" className="p-4 bg-gray-600 rounded-lg text-gray-300 hover:opacity-95 mx-2">
+            X
           </a>
 
           <a href="https://linkedin.com/in/diegogtzt" target="_blank" className="p-4 bg-gray-600 rounded-lg text-gray-300 hover:opacity-95 mx-2">
