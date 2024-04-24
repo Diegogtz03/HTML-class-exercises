@@ -7,6 +7,8 @@ import Image from "next/image";
 
 export default function Character({ params }: { params: { characterId: number } }) {
   const [character, setCharacter] = useState<Character>();
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [canEdit, setCanEdit] = useState<boolean>(false);
 
   const formatURL = (url: string) => {
     return url.replace("https://rickandmortyapi.com/api/episode/", "");
@@ -16,7 +18,29 @@ export default function Character({ params }: { params: { characterId: number } 
     getCharacterById(params.characterId).then((response: Character) => {
       setCharacter(response);
     })
+
+    const favoritesTemp = localStorage.getItem("favorites");
+
+    if (favoritesTemp != null) {
+      setFavorites(JSON.parse(favoritesTemp));
+    }
+
+    setCanEdit(true);
   }, []);
+
+  useEffect(() => {
+    if (canEdit) {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  }, [favorites]);
+
+  const handleFavorite = () => {
+    if (favorites.includes(character?.id || -1)) {
+      setFavorites(favorites.filter((id) => id !== character?.id));
+    } else {
+      setFavorites([...favorites, character?.id || -1]);
+    }
+  }
   
   return (
     <>
@@ -32,6 +56,15 @@ export default function Character({ params }: { params: { characterId: number } 
             <h1 className="text-white text-6xl mb-4">
               {character?.name}
             </h1>
+
+            <div className="absolute right-4">
+              <button className="text-white bg-slate-500 rounded-md p-3 transition-colors hover:bg-slate-600" onClick={() => handleFavorite()}>
+                <div className="flex items-center gap-3">
+                  { favorites.includes(character?.id || -1) ? "Remove from favorites" : "Add to favorites" }
+                  <Image src={ favorites.includes(character?.id || -1) ? "/filledStar.svg" : "/emptyStar.svg" } height={30} width={30} alt="Star icon"></Image>
+                </div>
+              </button>
+            </div>
 
             <p className="text-gray-400 ml-3 text-xl mb-1">
               {character?.status} - {character?.species}
