@@ -1,15 +1,15 @@
-import { navigateToCharacters, navigateToFavorites } from "../actions";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <header className="bg-gray-800 text-white p-7 mb-4 flex justify-end space-x-5 sticky top-0">
-      <button onClick={() => navigateToCharacters()}>
+      <Link href="/">
         Characters
-      </button>
+      </Link>
 
-      <button onClick={() => navigateToFavorites()}>
+      <Link href="/favorites">
         Favorites
-      </button>
+      </Link>
     </header>
   );
 }
