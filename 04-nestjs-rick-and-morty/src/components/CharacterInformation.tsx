@@ -27,7 +27,9 @@ export default function CharacterInformation({
 
         <div className="absolute right-4">
           <button
+            role="button"
             className="rounded-md bg-slate-500 p-3 text-white transition-colors hover:bg-slate-600"
+            name="favoriteButton"
             onClick={() => setFavoriteCharacter(character.id)}
           >
             <div className="flex items-center gap-3">
