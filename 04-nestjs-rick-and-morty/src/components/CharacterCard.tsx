@@ -1,17 +1,29 @@
 "use client"
 
 import { Character } from "@/types/characters"
-import { navigateToCharacter } from "../app/actions"
-import { setFavoriteCharacter } from "@/actions/characters"
+import { navigateToCharacter } from "../actions/actions"
 import Image from "next/image"
+import { Dispatch, SetStateAction } from "react"
 
 export default function CharacterCard({
   character,
   isFavorite,
+  setFavoriteIds,
 }: {
   character: Character
   isFavorite: boolean
+  setFavoriteIds: Dispatch<SetStateAction<number[]>>
 }) {
+  const handleFavorite = () => {
+    setFavoriteIds((prev) => {
+      if (prev.includes(character.id)) {
+        return prev.filter((id) => id !== character.id)
+      } else {
+        return [...prev, character.id]
+      }
+    })
+  }
+
   return (
     <div className="relative flex w-full items-center gap-4 overflow-hidden rounded-lg bg-slate-600">
       <Image
@@ -37,7 +49,7 @@ export default function CharacterCard({
 
       <button
         className="absolute right-3 top-3"
-        onClick={() => setFavoriteCharacter(character.id)}
+        onClick={() => handleFavorite()}
       >
         <Image
           src={isFavorite ? "/filledStar.svg" : "/emptyStar.svg"}

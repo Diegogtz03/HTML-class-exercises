@@ -1,7 +1,9 @@
 "use client"
 
 import { Character } from "@/types/characters"
-import { setFavoriteCharacter } from "@/actions/characters"
+import { updateUsersFavorites } from "@/services/favorites"
+import { useState, useEffect } from "react"
+import { useSession } from "next-auth/react"
 import Image from "next/image"
 
 export default function CharacterInformation({
@@ -11,6 +13,33 @@ export default function CharacterInformation({
   character: Character
   favoriteCharacters: number[]
 }) {
+  const session = useSession()
+
+  const [favoriteCharacterIds, setFavoriteCharacterIds] =
+    useState<number[]>(favoriteCharacters)
+  const [canEdit, setCanEdit] = useState(false)
+
+  useEffect(() => {
+    if (canEdit) {
+      updateUsersFavorites(
+        session.data?.user?.email ?? "",
+        favoriteCharacterIds,
+      )
+    } else {
+      setCanEdit(true)
+    }
+  }, [favoriteCharacterIds])
+
+  const handleFavorite = () => {
+    setFavoriteCharacterIds((prev) => {
+      if (prev.includes(character.id)) {
+        return prev.filter((id) => id !== character.id)
+      } else {
+        return [...prev, character.id]
+      }
+    })
+  }
+
   return (
     <>
       <div className="max-w-fit overflow-hidden rounded-lg">
@@ -30,15 +59,15 @@ export default function CharacterInformation({
             role="button"
             className="rounded-md bg-slate-500 p-3 text-white transition-colors hover:bg-slate-600"
             name="favoriteButton"
-            onClick={() => setFavoriteCharacter(character.id)}
+            onClick={() => handleFavorite()}
           >
             <div className="flex items-center gap-3">
-              {favoriteCharacters.includes(character?.id || -1)
+              {favoriteCharacterIds.includes(character?.id || -1)
                 ? "Remove from favorites"
                 : "Add to favorites"}
               <Image
                 src={
-                  favoriteCharacters.includes(character?.id || -1)
+                  favoriteCharacterIds.includes(character?.id || -1)
                     ? "/filledStar.svg"
                     : "/emptyStar.svg"
                 }
