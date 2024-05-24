@@ -5,14 +5,9 @@ import Header from "@/components/Header"
 
 const mockLink = vi.fn()
 
-vi.mock("next/link", () => ({
-  default: ({ children, href }: any) => {
-    return (
-      <a onClick={() => mockLink(href)} href={href}>
-        {children}
-      </a>
-    )
-  },
+vi.mock("@/actions/actions", () => ({
+  navigateToHome: () => mockLink("/"),
+  navigateToFavorites: () => mockLink("/favorites"),
 }))
 
 test("Header Component Render Test", async () => {

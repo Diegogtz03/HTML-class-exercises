@@ -4,6 +4,20 @@ import { MOCK_CHARACTERS } from "@/const/testModels"
 import CharacterInformation from "@/components/CharacterInformation"
 
 test("Character Information Component Render Test", async () => {
+  vi.mock("@/services/favorites", () => ({
+    updateUsersFavorites: vi.fn(),
+  }))
+
+  vi.mock("next-auth/react", () => ({
+    useSession: () => ({
+      data: {
+        user: {
+          email: "diego@gmail.com",
+        },
+      },
+    }),
+  }))
+
   render(
     <CharacterInformation
       character={MOCK_CHARACTERS.results[0]}

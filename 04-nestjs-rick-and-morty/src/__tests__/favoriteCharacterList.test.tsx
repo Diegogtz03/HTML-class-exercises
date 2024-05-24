@@ -5,7 +5,11 @@ import CharacterCard from "@/components/CharacterCard"
 
 test("Favorite characters list test", async () => {
   render(
-    <CharacterCard character={MOCK_CHARACTERS.results[0]} isFavorite={true} />,
+    <CharacterCard
+      character={MOCK_CHARACTERS.results[0]}
+      isFavorite={true}
+      setFavoriteIds={() => null}
+    />,
   )
 
   expect(screen.getByText("Rick Sanchez")).toBeVisible()
