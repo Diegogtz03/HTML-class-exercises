@@ -49,10 +49,10 @@ export async function getCharacterById(id: number): Promise<Character> {
   return responseObject
 }
 
-export async function getFavoriteCharacters(): Promise<
-  Character[] | Character
-> {
-  const favoriteIds = getCharacterIds()
+export async function getFavoriteCharacters(
+  favoriteIds: number[],
+): Promise<Character[] | Character> {
+  // const favoriteIds = getCharacterIds()
 
   if (favoriteIds.length === 0) {
     return []
