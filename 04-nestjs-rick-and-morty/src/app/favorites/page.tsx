@@ -1,33 +1,33 @@
 import { getFavoriteCharacters } from "@/services/characters"
-import CharacterCard from "../../components/CharacterCard"
+// import CharacterCard from "../../components/CharacterCard"
+import CharacterList from "@/components/CharacterList"
 import Header from "../../components/Header"
+import { checkSession } from "../../actions/session"
+import { redirect } from "next/navigation"
+import { getUsersFavorites } from "@/services/favorites"
 
 export default async function Favorites() {
-  const characters = await getFavoriteCharacters()
+  const hasSession = await checkSession()
+
+  if (!hasSession) {
+    redirect("/auth")
+  }
+
+  const characterIds = await (
+    await getUsersFavorites(hasSession.user?.email ?? "")
+  ).characterIds!
+
+  const characters = await getFavoriteCharacters(characterIds)
 
   return (
     <>
       <Header />
       <div>
-        {Array.isArray(characters) && characters.length == 0 && (
-          <h1 className="ml-5 text-4xl text-white">No favorites</h1>
-        )}
-
-        <div className="grid-flow-column grid grid-cols-3 gap-7 p-5">
-          {!Array.isArray(characters) && characters != null ? (
-            <CharacterCard character={characters} isFavorite={true} />
-          ) : (
-            <>
-              {characters?.map((character) => (
-                <CharacterCard
-                  key={character.id}
-                  character={character}
-                  isFavorite={true}
-                />
-              ))}
-            </>
-          )}
-        </div>
+        <CharacterList
+          characters={characters instanceof Array ? characters : [characters]}
+          favoriteCharacters={characterIds}
+          favoriteLogic={true}
+        />
       </div>
     </>
   )

@@ -4,14 +4,27 @@ import { getCharacterIds } from "@/utils/cookiesFunctions"
 import Header from "../../../components/Header"
 import CharacterInformation from "@/components/CharacterInformation"
 import CharacterEpisodes from "@/components/CharacterEpisodes"
+import { checkSession } from "@/actions/session"
+import { redirect } from "next/navigation"
+import { getUsersFavorites } from "@/services/favorites"
 
 export default async function Character({
   params,
 }: {
   params: { characterId: number }
 }) {
+  const hasSession = await checkSession()
+
+  if (!hasSession) {
+    redirect("/auth")
+  }
+
   const character = await getCharacterById(params.characterId)
-  const favoriteCharacters = getCharacterIds()
+  // const favoriteCharacters = getCharacterIds()
+
+  const favoriteCharacters = await getUsersFavorites(
+    hasSession.user?.email ?? "",
+  )
 
   return (
     <>
@@ -21,7 +34,7 @@ export default async function Character({
         <div className="flex gap-7">
           <CharacterInformation
             character={character}
-            favoriteCharacters={favoriteCharacters}
+            favoriteCharacters={favoriteCharacters.characterIds!}
           />
         </div>
 
