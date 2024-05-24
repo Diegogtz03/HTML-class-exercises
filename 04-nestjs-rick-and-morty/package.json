@@ -10,17 +10,26 @@
     "lint:fix": "next lint --fix",
     "test": "vitest",
     "test:ci": "vitest run --coverage",
-    "prepare": "cd .. && husky 04-nestjs-rick-and-morty/.husky || true"
+    "prepare": "cd .. && husky 04-nestjs-rick-and-morty/.husky || true",
+    "db:migrate": "npx tsx ./src/db/migrate.ts",
+    "db:generate": "drizzle-kit generate --name db"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.1.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
+    "@vercel/postgres": "^0.8.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.6.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.21.4",
+    "drizzle-orm": "^0.30.10",
     "eslint-plugin-testing-library": "^6.2.2",
     "jsdom": "^24.0.0",
     "next": "14.2.2",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
     "zod": "^3.23.6"
