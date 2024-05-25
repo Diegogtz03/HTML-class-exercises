@@ -1,5 +1,4 @@
 "use client"
-
 import { Character } from "@/types/characters"
 import { updateUsersFavorites } from "@/services/favorites"
 import { useState, useEffect } from "react"
