@@ -25,7 +25,6 @@ jobs:
 
       - name: install dependencies
         run: npm install
-        working-directory: 04-nestjs-rick-and-morty
 
       - name: tests
         run: npm run test:ci
@@ -33,7 +32,6 @@ jobs:
 
       - name: Install Vercel CLI
         run: npm add -g vercel@latest
-        working-directory: 04-nestjs-rick-and-morty
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
