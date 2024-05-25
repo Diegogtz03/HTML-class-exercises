@@ -4,7 +4,7 @@ import {
   getCharacterById,
 } from "@/services/characters"
 
-import { CharacterResponse, Character } from "@/types/characters"
+import { CharacterResponse } from "@/types/characters"
 
 test("Get characters first page", async () => {
   const response = await getCharactersFirstPage()

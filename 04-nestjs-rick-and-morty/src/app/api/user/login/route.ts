@@ -2,7 +2,7 @@ import { db, users } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
 import { hashPassword } from "@/utils/hashing"
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   const { email, password } = await request.json()
 
   const user = await db

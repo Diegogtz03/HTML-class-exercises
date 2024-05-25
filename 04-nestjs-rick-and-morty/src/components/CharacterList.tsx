@@ -2,7 +2,7 @@
 
 import CharacterCard from "./CharacterCard"
 import { Character } from "@/types/characters"
-import { useState, useEffect, use } from "react"
+import { useState, useEffect } from "react"
 import { updateUsersFavorites } from "@/services/favorites"
 import { useSession } from "next-auth/react"
 

@@ -13,9 +13,10 @@ export default async function Favorites() {
     redirect("/auth")
   }
 
-  const characterIds = await (
-    await getUsersFavorites(hasSession.user?.email ?? "")
-  ).characterIds!
+  const characterIds =
+    (await (
+      await getUsersFavorites(hasSession.user?.email ?? "")
+    ).characterIds) ?? []
 
   const characters = await getFavoriteCharacters(characterIds)
 

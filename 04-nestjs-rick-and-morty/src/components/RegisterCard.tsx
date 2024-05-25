@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import { registerUser } from "@/services/auth"
-import { redirect } from "next/navigation"
 import { navigateToLogin } from "@/actions/actions"
 
 export default function LoginCard() {
@@ -24,7 +23,7 @@ export default function LoginCard() {
     if (response.code === 200) {
       navigateToLogin()
     } else {
-      setError(response.error!)
+      setError(response.error ?? "")
 
       setTimeout(() => {
         setError("")

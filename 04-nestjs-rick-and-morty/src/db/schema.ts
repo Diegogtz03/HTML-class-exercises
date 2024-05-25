@@ -1,13 +1,7 @@
 import { drizzle } from "drizzle-orm/vercel-postgres"
 import { sql } from "@vercel/postgres"
 import { pgTable } from "drizzle-orm/pg-core"
-import {
-  text,
-  numeric,
-  timestamp,
-  integer,
-  primaryKey,
-} from "drizzle-orm/pg-core"
+import { text, timestamp, integer, primaryKey } from "drizzle-orm/pg-core"
 import type { AdapterAccount } from "next-auth/adapters"
 
 export const db = drizzle(sql)

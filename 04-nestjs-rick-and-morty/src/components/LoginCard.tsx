@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import { signIn } from "next-auth/react"
-import { redirect } from "next/navigation"
 
 export default function LoginCard() {
   const [email, setEmail] = useState("")

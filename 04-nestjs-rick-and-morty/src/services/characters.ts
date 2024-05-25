@@ -5,7 +5,6 @@ import {
   CharacterResponse,
   CharacterArraySchema,
 } from "@/types/characters"
-import { getCharacterIds } from "@/utils/cookiesFunctions"
 
 export async function getCharactersFirstPage(): Promise<CharacterResponse> {
   const response = await fetch("https://rickandmortyapi.com/api/character")

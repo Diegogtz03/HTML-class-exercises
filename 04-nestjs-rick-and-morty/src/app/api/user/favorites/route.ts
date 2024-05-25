@@ -2,7 +2,7 @@ import { db, favorites, users } from "@/db/schema"
 import stringToNumArray from "@/utils/arrayConverter"
 import { eq } from "drizzle-orm"
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   const { email } = await request.json()
 
   const userId = await db
@@ -24,11 +24,11 @@ export async function POST(request: Request, response: Response) {
 
   return Response.json({
     code: 200,
-    characterIds: stringToNumArray(res[0].characterIds!),
+    characterIds: stringToNumArray(res[0].characterIds ?? ""),
   })
 }
 
-export async function PUT(request: Request, response: Response) {
+export async function PUT(request: Request) {
   const { email, favoritesIds } = await request.json()
 
   const userId = await db
@@ -51,6 +51,6 @@ export async function PUT(request: Request, response: Response) {
 
   return Response.json({
     code: 200,
-    characterIds: stringToNumArray(res[0].characterIds!),
+    characterIds: stringToNumArray(res[0].characterIds ?? ""),
   })
 }

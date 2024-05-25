@@ -5,20 +5,27 @@ import { signOut } from "next-auth/react"
 export default function Header() {
   return (
     <header className="sticky top-0 mb-4 flex items-center justify-end space-x-5 bg-gray-800 p-7 text-white">
-      <a className="cursor-pointer" onClick={() => navigateToHome()} id="home">
+      <button
+        className="cursor-pointer"
+        onClick={() => navigateToHome()}
+        onKeyDown={() => navigateToHome()}
+        id="home"
+      >
         Characters
-      </a>
+      </button>
 
-      <a
+      <button
         className="cursor-pointer"
         onClick={() => navigateToFavorites()}
+        onKeyDown={() => navigateToFavorites()}
         id="favorites"
       >
         Favorites
-      </a>
+      </button>
 
       <button
         onClick={() => signOut()}
+        onKeyDown={() => signOut()}
         className="rounded-lg bg-red-500 p-2 px-4"
       >
         Sign out

@@ -3,7 +3,6 @@ import {
   getCharacterAtPage,
 } from "@/services/characters"
 import { CharacterResponse } from "@/types/characters"
-import { getCharacterIds } from "@/utils/cookiesFunctions"
 import { getUsersFavorites } from "@/services/favorites"
 import { PageProps } from "@/types/page"
 import Header from "../components/Header"
