@@ -1,4 +1,4 @@
-name: Deploy to Vercel
+name: Test & Deploy to Vercel
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -7,11 +7,36 @@ env:
   API_ROOT_ROUTE: ${{ secrets.API_ROOT_ROUTE }}
   NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
   NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 on:
   push:
     branches:
       - main
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: install dependencies
+        run: npm install
+        working-directory: 04-nestjs-rick-and-morty
+
+      - name: run tests
+        run: npm run test:ci
+        working-directory: 04-nestjs-rick-and-morty
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   deploy:
     runs-on: ubuntu-latest
     steps:
