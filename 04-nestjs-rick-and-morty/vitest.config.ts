@@ -12,7 +12,7 @@ export default defineConfig({
     coverage: {
       include: ["src/components/*.{ts,tsx}", "src/services/*.{ts,tsx}"],
       exclude: [],
-      reporter: ["html", "text-summary"],
+      reporter: ["html", "text-summary", "json"],
       thresholds: {
         functions: 50,
         lines: 50,
