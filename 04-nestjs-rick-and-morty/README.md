@@ -1,6 +1,6 @@
 ## Rick and Morty
 
-![Tests](https://github.com/abrahamgr/web-app-learning/actions/workflows/test-coverage.yml/badge.svg)
+![Tests](https://github.com/diegogtz03/html-class-exercises/actions/workflows/deploy.yml/badge.svg)
 [![codecov](https://codecov.io/github/Diegogtz03/HTML-class-exercises/graph/badge.svg?token=9DGZHIN037)](https://codecov.io/github/Diegogtz03/HTML-class-exercises)
 
 
