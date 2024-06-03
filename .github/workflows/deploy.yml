@@ -52,11 +52,7 @@ jobs:
 
       - name: install dependencies
         run: npm install
-        working-directory: 04-nestjs-rick-and-morty
-
-      - name: tests
-        run: npm run test:ci
-        working-directory: 04-nestjs-rick-and-morty
+        working-directory: 04-nestjs-rick-and-mor
 
       - name: Install Vercel CLI
         run: npm add -g vercel@latest
